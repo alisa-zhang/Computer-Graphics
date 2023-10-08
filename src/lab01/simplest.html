@@ -1,0 +1,49 @@
+<html>
+  <!-- Vertex Shader: Modify vertex attributes of each vertex -->
+  <script id="vertex-shader" type="x-shader/x-vertex">
+    attribute vec4 vPosition;
+
+    // toRHR (to Right-Hand Rule) transformation matrix
+    // DO NOT MODIFY THE toRHR CONSTANT VARIABLE
+    const mat4 toRHR = mat4(vec4(1,0,0,0),
+			    vec4(0,1,0,0),
+			    vec4(0,0,-1,0),
+			    vec4(0,0,0,1));
+
+    void main()
+    {
+	// Modify vPosition to position (no modification in this case)
+	vec4 position = vPosition;
+
+	// DO NOT MODIFY THE NEXT LINE (to Right-Hand Rule)
+	gl_Position = toRHR * position;
+    }
+  </script>
+
+  <!-- Fragment Shader: Modify the color of each fragment -->
+  <script id="fragment-shader" type="x-shader/x-fragment">
+    precision mediump float;
+    
+    void main()
+    {
+	// Every fragment is green
+	gl_FragColor = vec4(0.0, 1.0, 0.0, 1.0);
+    }
+  </script>
+
+  <!-- Load user-defined libraries and programs -->
+  <script type="text/javascript" src="../common/initShaders.js"></script>
+  <script type="text/javascript" src="../common/myLib.js"></script>
+  <script type="text/javascript" src="simplest.js"></script>
+
+  <!-- HTML -->
+  <head>
+    <title>WebGL</title>
+  </head>
+  
+  <body onload="main();">
+    <canvas id="gl-canvas" width="512" height="512">
+      Check your browser...
+    </canvas>
+  </body>
+</html>

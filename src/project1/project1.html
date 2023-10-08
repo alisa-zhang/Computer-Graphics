@@ -1,0 +1,69 @@
+<!-- Rename this file to something else -->
+
+<html lang="en">
+  <!-- Vertex Shader -->
+  <script id="vertex-shader" type="x-shader/x-vertex">
+    attribute vec4 vPosition;
+    attribute vec4 vColor;
+    varying vec4 color;
+
+    uniform mat4 ctm;
+
+    // toRHR (to right-hand rule)
+    // DO NOT MODIFY THE toRHR VARIABLE
+    mat4 toRHR = mat4(vec4(1,0,0,0),
+		                  vec4(0,1,0,0),
+		                  vec4(0,0,-1,0),
+		                  vec4(0,0,0,1));
+    
+    void main()
+    {
+	vec4 position = ctm * vPosition;
+	color = vColor;
+	
+	// DO NOT MODIFY THE NEXT LINE
+	gl_Position = toRHR * position;
+    }
+  </script>
+
+  <!-- Fragment Shader -->
+  <script id="fragment-shader" type="x-shader/x-fragment">
+    precision mediump float;
+    
+    varying vec4 color;
+    
+    void main()
+    {
+	gl_FragColor = color;
+    }
+  </script>
+
+  <!-- Load user-defined libraries and programs -->
+  <script type="text/javascript" src="../common/initShaders.js"></script>
+  <!-- Add more libraries here -->
+  <script type="text/javascript" src="linearAlg.js"></script>
+  <!-- The main program -->
+  <script type="text/javascript" src="project1.js"></script>
+
+  <!-- HTML -->
+  <head>
+    <title>Project 1</title>
+  </head>
+  
+  <body onload="main();">
+    <h1>Project 1</h1>
+    <p>Your WebGL canvas is shown below:</p>
+    <canvas id="gl-canvas" width="512" height="512">
+      Sorry;
+    </canvas>
+    <!-- Below is a static part of the HTML which can be used for instruction
+         and/or explanation -->
+    <ul>
+      <li>Press [c] for a cube</li>
+      <li>Press [o] for a cone</li>
+      <li>Press [l] for a cylinder</li>
+      <li>Press [s] for a sphere</li>
+      <li>Press [t] for a torus</li>
+    </ul>
+  </body>
+</html>
