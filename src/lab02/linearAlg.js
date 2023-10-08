@@ -303,4 +303,4 @@ class LinAlg {
     }
 }
 
-//export {LinAlg};
+export {LinAlg};
